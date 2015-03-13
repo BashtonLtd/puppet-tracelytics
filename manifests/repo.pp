@@ -9,7 +9,7 @@ define tracelytics::repo ($access_key) {
   } elsif $::osfamily == 'Debian' {
     include apt
     apt::source { 'tracelytics':
-      location    => 'http://apt.tracelytics.com/${access_key}',
+      location    => "http://apt.tracelytics.com/${access_key}",
       release     => "${::lsbdistcodename}",
       repos       => 'main',
       include_src => false,
