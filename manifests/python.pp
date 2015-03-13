@@ -2,22 +2,24 @@ class tracelytics::python {
 
   include tracelytics
 
-  if !defined(Package[$tracelytics::params::python_package]) {
-    package { $tracelytics::params::python_package:
+  if !defined(Package[$::tracelytics::python_package]) {
+    package { $::tracelytics::python_package:
       ensure => installed,
     }
   }
 
-  if !defined(Package[$tracelytics::params::python_dev_package]) {
-    package { $tracelytics::params::python_dev_package:
+  if !defined(Package[$::tracelytics::python_dev_package]) {
+    package { $::tracelytics::python_dev_package:
       ensure  => installed,
-      require => Package[$tracelytics::params::python_package],
+      require => Package[$::tracelytics::python_package],
     }
   }
 
-  package { 'python-pip':
-    ensure  => installed,
-    require => Package[$tracelytics::params::python_dev_package],
+  if !defined(Package['python-pip']) {
+    package { 'python-pip':
+      ensure  => installed,
+      require => Package[$::tracelytics::python_dev_package],
+    }
   }
 
   exec { 'install-python-oboe':
