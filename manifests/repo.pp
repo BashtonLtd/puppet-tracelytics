@@ -13,8 +13,8 @@ define tracelytics::repo ($access_key) {
       release     => "${::lsbdistcodename}",
       repos       => 'main',
       include_src => false,
-      key         => '03311F20',
-      key_server  => 'pgp.mit.edu',
+      key         => 'E04AD2E4',
+      key_source  => 'https://apt.tracelytics.com/tracelytics-apt-key.pub',
     }
   } else {
     fail("Class['apache::params']: Unsupported osfamily: ${::osfamily}")
